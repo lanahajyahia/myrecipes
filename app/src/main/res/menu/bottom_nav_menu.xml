@@ -13,4 +13,8 @@
         android:title="@string/upload_recipe_fragment"
         android:icon="@drawable/ic_uploaded"/>
 
+    <item android:id="@+id/uploadImageRecipeFragment2"
+        android:title="@string/upload_img_recipe_fragment"
+        android:icon="@drawable/ic_add_photo"/>
+
 </menu>

@@ -73,26 +73,31 @@
                     android:id="@+id/buttonCreateNewRecipe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="CREATE NEW RECIPE" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:text="OR"
                     android:textColor="@color/black"
                     android:textSize="25sp"></TextView>
 
                 <Button
-                    android:id="@+id/upload_recipe_image"
+                    android:id="@+id/upload_recipe_btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:text="Upload Recipe Image" />
+
+                <ImageView
+                    android:id="@+id/img_uploaded_recipe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></ImageView>
 
 
             </LinearLayout>

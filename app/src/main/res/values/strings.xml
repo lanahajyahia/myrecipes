@@ -43,6 +43,7 @@
     <string name="default_text">default text default text default text default text default text. </string>
     <string name="share">Share</string>
     <string name="search_category">Search Category</string>
+    <string name="upload_img_recipe_fragment">Upload Image</string>
     <string-array name="category_spinner">
         <item>main_course</item>
         <item>side_dish</item>

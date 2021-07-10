@@ -32,9 +32,18 @@ class UploadedDetailsActivity : AppCompatActivity() {
 
 
     }
+
+      override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.details_edit_menu, menu)
+        val menuItem = menu?.findItem(R.id.menu_edit)
+//        checkSavedRecipes(menuItem!!)
+        return true
+    }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
+        }else if (item.itemId == R.id.menu_edit ) {
+
         }
         return super.onOptionsItemSelected(item)
     }

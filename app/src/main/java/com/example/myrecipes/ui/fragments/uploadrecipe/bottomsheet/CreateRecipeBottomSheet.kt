@@ -1,5 +1,8 @@
 package com.example.myrecipes.ui.fragments.uploadrecipe.bottomsheet
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,6 +15,11 @@ import com.example.myrecipes.models.UploadedRecipe
 import com.example.myrecipes.util.Constants.Companion.DEFAULT_MEAL_CATEGORY
 import com.example.myrecipes.util.Constants.Companion.FIREBASE_RECIPE
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_create_recipe.*
+import java.net.URI
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class CreateRecipeBottomSheet : Fragment(), AdapterView.OnItemSelectedListener {
@@ -21,8 +29,8 @@ class CreateRecipeBottomSheet : Fragment(), AdapterView.OnItemSelectedListener {
     lateinit var editTextRecipeInstructions: EditText
     lateinit var stringCategory: String
     lateinit var buttonCreateNewRecipe: Button
-    lateinit var buttonUploadFromGalleryRecipe: Button
     lateinit var categorySpinner: Spinner
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,7 +67,6 @@ class CreateRecipeBottomSheet : Fragment(), AdapterView.OnItemSelectedListener {
         editTextRecipeIngredients = rootView.findViewById<EditText>(R.id.editTextRecipeIngredients)
         editTextRecipeInstructions =
             rootView.findViewById<EditText>(R.id.editTextRecipeInstructions)
-        buttonUploadFromGalleryRecipe = rootView.findViewById<Button>(R.id.upload_recipe_image)
         buttonCreateNewRecipe = rootView.findViewById<Button>(R.id.buttonCreateNewRecipe)
         categorySpinner = rootView.findViewById(R.id.category_spinner)
         categorySpinner.onItemSelectedListener = this
@@ -74,9 +81,7 @@ class CreateRecipeBottomSheet : Fragment(), AdapterView.OnItemSelectedListener {
             editTextRecipeInstructions.text.clear()
 
         }
-        buttonUploadFromGalleryRecipe.setOnClickListener {
 
-        }
 
     }
 

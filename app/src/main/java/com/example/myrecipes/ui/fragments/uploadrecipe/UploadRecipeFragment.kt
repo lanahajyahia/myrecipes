@@ -3,6 +3,7 @@ package com.example.myrecipes.ui.fragments.uploadrecipe
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,10 +37,11 @@ class UploadRecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        recipes.clear()
         _binding = FragmentUploadRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.mainViewModel = mainViewModel
-        recipes.clear()
+
         fetchDataFromFirebase()
         binding.recipesUploadFab1?.setOnClickListener {
             findNavController().navigate(R.id.action_uploadRecipeFragment_to_createRecipesBottomSheet)
@@ -50,6 +52,7 @@ class UploadRecipeFragment : Fragment() {
     }
 
     private fun setUpRecycleView() {
+
         val mAdapter by lazy { UploadedRecipeAdapter(recipes) }
 
         binding.recyclerviewRecipesUpload.adapter = mAdapter
@@ -61,17 +64,19 @@ class UploadRecipeFragment : Fragment() {
         val ref = FirebaseDatabase.getInstance().getReference(FIREBASE_RECIPE)
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                recipes.clear()
                 for (recipeSnapshot in dataSnapshot.children) {
                     val recipe = recipeSnapshot.getValue(UploadedRecipe::class.java)
                     recipes.add(recipe!!)
-//                    Log.d("pttt", "name: " + recipe.name);
-//                    Log.d("pttt", "description: " + recipe.description);
 
                 }
-                if (recipes.size != 0) {
+                if (recipes.size > 0) {
                     setUpRecycleView()
+                }else{
+                    setUpRecycleView()
+                    binding.noRecipesTextView.visibility = View.VISIBLE
                 }
-                Log.d("pttt", "szie: " + recipes.size);
+                Log.d("pttt", "size: " + recipes.size);
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

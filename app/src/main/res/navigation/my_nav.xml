@@ -70,4 +70,9 @@
             android:name="result"
             app:argType="com.example.myrecipes.models.Result" />
     </activity>
+    <fragment
+        android:id="@+id/uploadImageRecipeFragment2"
+        android:name="com.example.myrecipes.ui.fragments.uploadimagerecipe.UploadImageRecipeFragment"
+        android:label="UploadImageRecipeFragment"
+        tools:layout="@layout/fragment_upload_image_recipe"/>
 </navigation>
