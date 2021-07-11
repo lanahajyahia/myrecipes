@@ -22,9 +22,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_details.*
 import java.lang.Exception
 
+// this activity will contain 3 fragments
+// ths goes by requesting the result of the api from the recipe fragment and send it to this activity
+// so this activity wont get any data from the api directly
+// by connceting in my nav between recipe frag and details activity. and the activity will have the argument result
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
+    // safe args from recipe fragment
     private val args by navArgs<DetailsActivityArgs>()
     private val mainViewModel: MainViewModel by viewModels()
 
@@ -39,19 +44,23 @@ class DetailsActivity : AppCompatActivity() {
         toolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        // init pagerAdapter - create fragments array
         val fragments = ArrayList<Fragment>()
         fragments.add(OverviewFragment())
         fragments.add(IngredientsFragment())
         fragments.add(InstructionsFragment())
 
+        // init pagerAdapter - create fragments titles array
         val titles = ArrayList<String>()
         titles.add("Overview")
         titles.add("Ingredients")
         titles.add("Instructions")
 
+        // we get the data from the safe args from the recipes fragment
         val resultBundle = Bundle()
         resultBundle.putParcelable(RECIPE_RESULT_KEY, args.result)
 
+        // init pagerAdapter
         val adapter = PagerAdapter(
             resultBundle,
             fragments,

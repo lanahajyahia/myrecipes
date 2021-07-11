@@ -14,7 +14,7 @@ import com.example.myrecipes.models.Result
 import com.example.myrecipes.ui.fragments.recipes.RecipesFragmentDirections
 import org.jsoup.Jsoup
 import java.lang.Exception
-// @JvmStatic tell the compiler to make out function static so we can access it from else where
+// @JvmStatic tell the compiler to make function static so we can access it from else where
 // @BindingAdapter("setNumberOfLikes") a name we give the "function" in order to use in xml file
 // we create this class in order to convert the data types int/ boolean..) that
 // comes from the json api to string in order to fetch it in the viewholder
@@ -23,7 +23,8 @@ class RecipesRowBinding {
 
     // so we can access the function else where in the project
     companion object {
-        // load image - using coil library to load, cross fade - when loading have a fade annimation
+
+        // whenever a row is selected we want to move the data to details activity
         @BindingAdapter("onRecipeClickListener")
         @JvmStatic
         fun onRecipeClickListener(recipeRowLayout: ConstraintLayout, result: Result) {
@@ -39,6 +40,7 @@ class RecipesRowBinding {
             }
         }
 
+        // load image - using coil library to load, cross fade - when loading have a fade annimation
         @BindingAdapter("loadImageFromUrl")
         @JvmStatic
         fun loadImageFromUrl(imageView: ImageView, imageUrl: String) {
@@ -46,12 +48,6 @@ class RecipesRowBinding {
                 crossfade(600)
                 error(R.drawable.ic_error_placeholder)
             }
-        }
-
-        @BindingAdapter("setNumberOfLikes")
-        @JvmStatic
-        fun setNumberOfLikes(textView: TextView, likes: Int) {
-            textView.text = likes.toString()
         }
 
         @BindingAdapter("setNumberOfMinutes")
@@ -86,6 +82,7 @@ class RecipesRowBinding {
             }
         }
 
+        // parse html tags to remove them
         @BindingAdapter("parseHtml")
         @JvmStatic
         fun parseHtml(textView: TextView, description: String?){

@@ -23,6 +23,7 @@ class IngredientsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_ingredients, container, false)
 
+        // args to get data from bundle
         val args = arguments
         val myBundle: Result? = args?.getParcelable(RECIPE_RESULT_KEY)
 

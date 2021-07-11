@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
+// parcelize - use is as a argument
 @Parcelize
 data class Result(
     @SerializedName("aggregateLikes")
@@ -24,7 +25,7 @@ data class Result(
     @SerializedName("readyInMinutes")
     val readyInMinutes: Int,
     @SerializedName("sourceName")
-    val sourceName: String?,
+    val sourceName: String?, // '?' means that this field can be nullable
     @SerializedName("sourceUrl")
     val sourceUrl: String,
     @SerializedName("summary")

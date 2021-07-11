@@ -24,6 +24,7 @@ class IngredientsAdapter: RecyclerView.Adapter<IngredientsAdapter.MyViewHolder>(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        // use the api base url from spooncular to get the image of the ingredient
         holder.itemView.ingredient_imageView.load(BASE_IMAGE_URL + ingredientsList[position].image) {
             crossfade(600)
             error(R.drawable.ic_error_placeholder)

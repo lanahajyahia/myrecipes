@@ -11,6 +11,7 @@ import com.example.myrecipes.models.Result
 import com.example.myrecipes.util.Constants
 import kotlinx.android.synthetic.main.fragment_instructions.view.*
 
+// webView by loading src URL
 class InstructionsFragment : Fragment() {
 
     override fun onCreateView(
@@ -24,6 +25,7 @@ class InstructionsFragment : Fragment() {
         val myBundle: Result? = args?.getParcelable(Constants.RECIPE_RESULT_KEY)
 
         view.instructions_webView.webViewClient = object : WebViewClient() {}
+        // loadUrl requires a not nullble stinf so add !! after myBundle
         val websiteUrl: String = myBundle!!.sourceUrl
         view.instructions_webView.loadUrl(websiteUrl)
 
