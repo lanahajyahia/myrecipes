@@ -6,8 +6,9 @@ import com.example.myrecipes.data.database.entities.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-// we inject this localdata source to the Repository class
+// we inject this local data source to the Repository class
 // we use this local data source to catch the recipes fom api to a db to access these recipes when offline
+// these functions call the recipesDAO functions to manipulate data with database
 class LocalDataSource @Inject constructor(
     private val recipesDao: RecipesDao
 ) {
@@ -21,10 +22,6 @@ class LocalDataSource @Inject constructor(
         return recipesDao.readFavoriteRecipes()
     }
 
-//    fun readFoodJoke(): Flow<List<UploadRecipesEntity>> {
-//        return recipesDao.readFoodJoke()
-//    }
-
     suspend fun insertRecipes(recipesEntity: RecipesEntity) {
         recipesDao.insertRecipes(recipesEntity)
     }
@@ -32,10 +29,6 @@ class LocalDataSource @Inject constructor(
     suspend fun insertFavoriteRecipes(favoritesEntity: FavoritesEntity) {
         recipesDao.insertFavoriteRecipe(favoritesEntity)
     }
-
-//    suspend fun insertFoodJoke(uploadRecipesEntity: UploadRecipesEntity) {
-//        recipesDao.insertFoodJoke(uploadRecipesEntity)
-//    }
 
     suspend fun deleteFavoriteRecipe(favoritesEntity: FavoritesEntity) {
         recipesDao.deleteFavoriteRecipe(favoritesEntity)

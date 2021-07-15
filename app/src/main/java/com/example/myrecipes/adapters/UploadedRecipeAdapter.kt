@@ -18,8 +18,7 @@ import com.example.myrecipes.util.Constants.Companion.FIREBASE_RECIPE
 import com.google.firebase.database.*
 
 
-
-class UploadedRecipeAdapter( private val list: List<UploadedRecipe>) :
+class UploadedRecipeAdapter(private val list: List<UploadedRecipe>) :
     RecyclerView.Adapter<UploadedRecipeViewHolder>() {
     private var listData: MutableList<UploadedRecipe> = list as MutableList<UploadedRecipe>
 
@@ -33,7 +32,8 @@ class UploadedRecipeAdapter( private val list: List<UploadedRecipe>) :
         val uploadedRecipe: UploadedRecipe = list[position]
         holder.bind(list[position], position)
     }
-    fun deleteItem(index: Int){
+
+    fun deleteItem(index: Int) {
         listData.removeAt(index)
         notifyDataSetChanged()
     }
@@ -65,6 +65,7 @@ class UploadedRecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         itemView.setOnClickListener { v ->
             val context: Context = v.context
             val intent = Intent(context, UploadedDetailsActivity::class.java)
+            intent.putExtra("id", id)
             intent.putExtra("name", name)
             intent.putExtra("description", description)
             intent.putExtra("ingredients", ingredients)
@@ -113,7 +114,6 @@ class UploadedRecipeViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         }
 
     }
-
 
 
 }

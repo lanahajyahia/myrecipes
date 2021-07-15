@@ -8,7 +8,7 @@ import com.example.myrecipes.util.Constants.Companion.RECIPES_TABLE
 // this class will be used when the database is not empty.
 @Entity(tableName = RECIPES_TABLE)
 class RecipesEntity(
-    // the table will contain pne row of food recipe
+    // the table will contain one row of food recipe
     // type convertor from object to json since we cant store complex data in the database
     var foodRecipe: FoodRecipe
 ) {

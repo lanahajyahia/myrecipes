@@ -30,7 +30,7 @@ class OverviewFragment : Fragment() {
         // load url image
         view.main_imageView.load(myBundle?.image)
         view.title_textView.text = myBundle?.title // set title
-        view.time_textView.text = myBundle?.readyInMinutes.toString() // ready in minutes
+
         myBundle?.summary.let { // set summary and parse html data (remove html tags) by using jsoup library
             val summary = Jsoup.parse(it).text()
             view.summary_textView.text = summary

@@ -29,6 +29,7 @@ class MainViewModel @ViewModelInject constructor(
         repository.local.readFavoriteRecipes().asLiveData()
 
     // one param. view model scope to run koltin corrotin
+    // launch(Dispatchers.IO) - threading without blocking processes
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRecipes(recipesEntity)
@@ -54,7 +55,7 @@ class MainViewModel @ViewModelInject constructor(
     // food recipe - NetworkResult return success error or loading response
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
     var searchedRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
-//    var foodJokeResponse: MutableLiveData<NetworkResult<FoodJoke>> = MutableLiveData()
+    // var foodJokeResponse: MutableLiveData<NetworkResult<FoodJoke>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queries)

@@ -21,9 +21,4 @@ interface FoodRecipesApi {
         @QueryMap searchQuery: Map<String, String>
     ): Response<FoodRecipe>
 
-//    @GET("food/jokes/random")
-//    suspend fun getFoodJoke(
-//        @Query("apiKey") apiKey: String
-//    ): Response<FoodJoke>
-
 }

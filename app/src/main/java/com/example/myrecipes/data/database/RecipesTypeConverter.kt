@@ -6,8 +6,11 @@ import com.example.myrecipes.models.Result
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+// type convertor class to convert from object to json, to add data to database
+// cant directly store object type data to the database
 class RecipesTypeConverter {
 
+    // using Gson library to convert to Json
     var gson = Gson()
 
     @TypeConverter

@@ -1,6 +1,7 @@
 package com.example.myrecipes.ui.fragments.uploadimagerecipe
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -26,9 +27,10 @@ class UploadImageRecipeFragment : Fragment() {
 
     private var _binding: FragmentUploadImageRecipeBinding? = null
     private val binding get() = _binding!!
+    val imageArrayList: ArrayList<SlideModel> = ArrayList()
 
 
-    //    lateinit var uploadedRecipeImg: ImageView
+    //  lateinit var uploadedRecipeImg: ImageView
     lateinit var imgURI: Uri //img uri uploaded from gallery
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,8 +39,6 @@ class UploadImageRecipeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentUploadImageRecipeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
-//      binding.mainViewModel = mainViewModel
-
 
         binding.recipesUploadImageFab?.setOnClickListener {
             selectImgFromGallery()
@@ -52,7 +52,7 @@ class UploadImageRecipeFragment : Fragment() {
     private fun uploadToSliderImage() {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference.child("images")
-        val imageArrayList: ArrayList<SlideModel> = ArrayList()
+
 
         val listAllTask: Task<ListResult> = storageRef.listAll()
         listAllTask.addOnCompleteListener { result ->
@@ -85,7 +85,6 @@ class UploadImageRecipeFragment : Fragment() {
 
 
     }
-
     private fun selectImgFromGallery() {
 
         val intent = Intent()
@@ -101,8 +100,11 @@ class UploadImageRecipeFragment : Fragment() {
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
             imgURI = data?.data!!
             uploadImgToFirebase()
-
+            imageArrayList.add(SlideModel(imgURI.toString()))
+            binding.imageSlider.setImageList(imageArrayList)
         }
     }
+
+
 
 }
