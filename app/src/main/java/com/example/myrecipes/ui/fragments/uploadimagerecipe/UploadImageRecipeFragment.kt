@@ -1,7 +1,6 @@
 package com.example.myrecipes.ui.fragments.uploadimagerecipe
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -44,6 +43,13 @@ class UploadImageRecipeFragment : Fragment() {
             selectImgFromGallery()
 
         }
+
+        if (imageArrayList.size == 0) {
+            binding.noRecipesImageTextView.visibility = View.VISIBLE
+        }else{
+            binding.noRecipesImageTextView.visibility = View.INVISIBLE
+        }
+
         uploadToSliderImage()
         return binding.root
 
@@ -61,8 +67,14 @@ class UploadImageRecipeFragment : Fragment() {
                 item.downloadUrl.addOnSuccessListener {
                     imageArrayList.add(SlideModel(it.toString()))
                 }.addOnCompleteListener {
-                    binding.imageSlider.stopSliding()
-                    binding.imageSlider.setImageList(imageArrayList)
+                    if (imageArrayList.size == 0) {
+                        binding.noRecipesImageTextView.visibility = View.VISIBLE
+                    } else {
+                        binding.noRecipesImageTextView.visibility = View.INVISIBLE
+                        binding.imageSlider.stopSliding()
+                        binding.imageSlider.setImageList(imageArrayList)
+                    }
+
                 }
             }
         }
@@ -85,6 +97,7 @@ class UploadImageRecipeFragment : Fragment() {
 
 
     }
+
     private fun selectImgFromGallery() {
 
         val intent = Intent()
@@ -102,9 +115,8 @@ class UploadImageRecipeFragment : Fragment() {
             uploadImgToFirebase()
             imageArrayList.add(SlideModel(imgURI.toString()))
             binding.imageSlider.setImageList(imageArrayList)
+            binding.noRecipesImageTextView.visibility = View.INVISIBLE
         }
     }
-
-
 
 }

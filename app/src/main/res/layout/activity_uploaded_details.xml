@@ -243,6 +243,7 @@
                     android:layout_weight="1"
                     android:text="Save"
                     android:visibility="invisible"
+                    android:backgroundTint="@color/colorPrimary"
 
                     ></Button>
 
@@ -254,6 +255,7 @@
                     android:layout_weight="1"
                     android:text="cancel"
                     android:visibility="invisible"
+                    android:backgroundTint="@color/colorPrimary"
 
                     ></Button>
 

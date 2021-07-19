@@ -18,7 +18,7 @@ import java.lang.Exception
 // @BindingAdapter("setNumberOfLikes") a name we give the "function" in order to use in xml file
 // we create this class in order to convert the data types int/ boolean..) that
 // comes from the json api to string in order to fetch it in the viewholder
-// in order to parse data from booelan/ url to string or whatever
+// in order to parse data from boolean/ url to string or whatever
 class RecipesRowBinding {
 
     // so we can access the function else where in the project

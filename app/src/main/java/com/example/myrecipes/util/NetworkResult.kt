@@ -1,5 +1,5 @@
 package com.example.myrecipes.util
-//Sealed classes and interfaces represent restricted class hierarchies that
+// Sealed classes and interfaces represent restricted class hierarchies that
 // provide more control over inheritance. All subclasses of a sealed class are known at compile time.
 // ... A sealed class is abstract by itself, it cannot be instantiated
 // directly and can have abstract members.

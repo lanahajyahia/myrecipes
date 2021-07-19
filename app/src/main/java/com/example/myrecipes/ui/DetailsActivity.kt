@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -25,12 +26,15 @@ import java.lang.Exception
 // this activity will contain 3 fragments
 // ths goes by requesting the result of the api from the recipe fragment and send it to this activity
 // so this activity wont get any data from the api directly
-// by connceting in my nav between recipe frag and details activity. and the activity will have the argument result
+// by connecting in my nav between recipe frag and details activity. and the activity will have the argument result
+
+// without the annotations the app will crash because it uses the mainviewmodel and its injected
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
 
-    // safe args from recipe fragment
+    // safe args from recipe fragment - the current recipe details
     private val args by navArgs<DetailsActivityArgs>()
+    // init main view model to use its functions to add and remove favs from db
     private val mainViewModel: MainViewModel by viewModels()
 
     private var recipeSaved = false
@@ -54,7 +58,7 @@ class DetailsActivity : AppCompatActivity() {
         val titles = ArrayList<String>()
         titles.add("Overview")
         titles.add("Ingredients")
-        titles.add("Instructions")
+        titles.add("Web Page")
 
         // we get the data from the safe args from the recipes fragment
         val resultBundle = Bundle()
@@ -72,9 +76,11 @@ class DetailsActivity : AppCompatActivity() {
         tabLayout.setupWithViewPager(viewPager)
     }
 
+    // inflate favorites menu in details acitivity
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_menu, menu)
         val menuItem = menu?.findItem(R.id.save_to_favorites_menu)
+        // check if the selected menu is on favorites table
         checkSavedRecipes(menuItem!!)
         return true
     }
@@ -91,6 +97,7 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
+        // observer the liveData
         mainViewModel.readFavoriteRecipes.observe(this, { favoritesEntity ->
             try {
                 for (savedRecipe in favoritesEntity) {
@@ -111,12 +118,12 @@ class DetailsActivity : AppCompatActivity() {
     private fun saveToFavorites(item: MenuItem) {
         val favoritesEntity =
             FavoritesEntity(
-                0,
-                args.result
+                0, // id will be auto generated
+                args.result //  the recipe to add to favs
             )
         mainViewModel.insertFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.yellow)
-        showSnackBar("Recipe saved.")
+        Toast.makeText(this, "Added to Favorites", Toast.LENGTH_SHORT).show()
         recipeSaved = true
     }
 
@@ -128,18 +135,10 @@ class DetailsActivity : AppCompatActivity() {
             )
         mainViewModel.deleteFavoriteRecipe(favoritesEntity)
         changeMenuItemColor(item, R.color.white)
-        showSnackBar("Removed from Favorites.")
+        Toast.makeText(this, "Removed from Favorites", Toast.LENGTH_SHORT).show()
         recipeSaved = false
     }
 
-    private fun showSnackBar(message: String) {
-        Snackbar.make(
-            detailsLayout,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).setAction("Okay") {}
-            .show()
-    }
 
     private fun changeMenuItemColor(item: MenuItem, color: Int) {
         item.icon.setTint(ContextCompat.getColor(this, color))

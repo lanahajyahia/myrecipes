@@ -75,6 +75,7 @@ class MainViewModel @ViewModelInject constructor(
 
                 val foodRecipe = recipesResponse.value!!.data
                 if (foodRecipe != null) {
+                    // add to room
                     offlineCacheRecipes(foodRecipe)
                 }
             } catch (e: Exception) {
@@ -102,8 +103,8 @@ class MainViewModel @ViewModelInject constructor(
     }
 
     // only one col in the database with name recipes
-    // wec convert foodRecipe to recipesEntity then insert it to database
-    // whenever we fetch datafrom api we cache that databa immdeitatly
+    // wec convert foodRecipe to recipesEntity then insert it to room database
+    // whenever we fetch data from api we cache that database immediately
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)

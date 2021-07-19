@@ -1,9 +1,8 @@
 package com.example.myrecipes.util
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.myrecipes.models.Result
 // will take two params: old list and new list
-// we use T as genric becuase we use this diff util for recipes adapter and for ingredients adapter
+// we use T as generic because we use this diff util for recipes adapter and for ingredients adapter
 class RecipesDiffUtil<T>(
     private val oldList: List<T>,
     private val newList: List<T>

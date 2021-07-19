@@ -7,8 +7,8 @@ import javax.inject.Inject
 // we create a view modile class to inject this repository
 @ActivityRetainedScoped
 class Repository @Inject constructor(
-    remoteDataSource: RemoteDataSource,
-    localDataSource: LocalDataSource
+    remoteDataSource: RemoteDataSource, // api
+    localDataSource: LocalDataSource // room
 ) {
 
     val remote = remoteDataSource

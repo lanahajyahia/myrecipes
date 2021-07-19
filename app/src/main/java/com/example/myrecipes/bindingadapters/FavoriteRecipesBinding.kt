@@ -9,9 +9,11 @@ import com.example.myrecipes.adapters.FavoriteRecipesAdapter
 import com.example.myrecipes.data.database.entities.FavoritesEntity
 
 class FavoriteRecipesBinding {
-
+    // bind data and show recycle view of favs (if not 0) else show image and text of empty list
+    // when add ? that mean it could be nullable
     companion object {
 
+        // require all = false, means we dont have to use all params
         @BindingAdapter("viewVisibility", "setData", requireAll = false)
         @JvmStatic
         fun setDataAndViewVisibility(

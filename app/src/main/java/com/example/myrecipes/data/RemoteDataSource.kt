@@ -6,7 +6,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 // request data from API - we inject food recipe inside it so we can request new data from API
-// two diffrent data soruces: remote(api) and local (local database)
+// two different data soruces: remote(api) and local (local database)
 // were gona inject foodrecipes API
 // after injecting the hilt will know how to search for a function that creates this module in networkModule
 // we create a local data source and inject the recipe dao inside it
@@ -21,9 +21,5 @@ class RemoteDataSource @Inject constructor(
     suspend fun searchRecipes(searchQuery: Map<String, String>): Response<FoodRecipe> {
         return foodRecipesApi.searchRecipes(searchQuery)
     }
-
-//    suspend fun getFoodJoke(apiKey: String): Response<FoodJoke> {
-//        return foodRecipesApi.getFoodJoke(apiKey)
-//    }
 
 }

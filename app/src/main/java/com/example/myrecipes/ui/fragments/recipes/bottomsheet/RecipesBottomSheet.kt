@@ -42,7 +42,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         val mView = inflater.inflate(R.layout.recipes_bottom_sheet, container, false)
 
         // when we open the bottom sheet the observer will be called
-        recipesViewModel.readMealAndDietType.asLiveData().observe(viewLifecycleOwner, { value ->
+        recipesViewModel.readMealType.asLiveData().observe(viewLifecycleOwner, { value ->
             mealTypeChip = value.selectedMealType
 //            dietTypeChip = value.selectedDietType
             updateChip(value.selectedMealTypeId, mView.mealType_chipGroup)
@@ -64,7 +64,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
 //        }
 
         mView.searchCategory_btn.setOnClickListener {
-            recipesViewModel.saveMealAndDietType(
+            recipesViewModel.saveMealType(
                 mealTypeChip,
                 mealTypeChipId
             )

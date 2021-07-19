@@ -1,7 +1,9 @@
 package com.example.myrecipes.ui.fragments.favorites
 
 import android.os.Bundle
+import android.text.BoringLayout.make
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +13,7 @@ import com.example.myrecipes.adapters.FavoriteRecipesAdapter
 import com.example.myrecipes.databinding.FragmentFavoriteRecipesBinding
 import com.example.myrecipes.viewmodels.MainViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.make
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_favorite_recipes.view.*
 
@@ -18,7 +21,12 @@ import kotlinx.android.synthetic.main.fragment_favorite_recipes.view.*
 class FavoriteRecipesFragment : Fragment() {
 
     private val mainViewModel: MainViewModel by viewModels()
-    private val mAdapter: FavoriteRecipesAdapter by lazy { FavoriteRecipesAdapter(requireActivity(), mainViewModel) }
+    private val mAdapter: FavoriteRecipesAdapter by lazy {
+        FavoriteRecipesAdapter(
+            requireActivity(),
+            mainViewModel
+        )
+    }
 
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
@@ -45,9 +53,9 @@ class FavoriteRecipesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.deleteAll_favorite_recipes_menu){
+        if (item.itemId == R.id.deleteAll_favorite_recipes_menu) {
             mainViewModel.deleteAllFavoriteRecipes()
-            showSnackBar()
+            Toast.makeText(context, "All recipes removed.", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -55,15 +63,6 @@ class FavoriteRecipesFragment : Fragment() {
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         recyclerView.adapter = mAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-    }
-
-    private fun showSnackBar(){
-        Snackbar.make(
-            binding.root,
-            "All recipes removed.",
-            Snackbar.LENGTH_SHORT
-        ).setAction("Okay"){}
-            .show()
     }
 
     override fun onDestroy() {

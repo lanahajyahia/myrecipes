@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 
+// not sure if we call\use it. and it checks if theres an internet connect to use the api
 @ExperimentalCoroutinesApi
 class NetworkListener : ConnectivityManager.NetworkCallback() {
 

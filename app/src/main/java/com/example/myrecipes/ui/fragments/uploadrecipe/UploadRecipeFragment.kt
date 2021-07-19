@@ -3,17 +3,14 @@ package com.example.myrecipes.ui.fragments.uploadrecipe
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myrecipes.R
-import com.example.myrecipes.adapters.RecipesAdapter
 import com.example.myrecipes.adapters.UploadedRecipeAdapter
 import com.example.myrecipes.databinding.FragmentUploadRecipesBinding
 import com.example.myrecipes.models.UploadedRecipe
-import com.example.myrecipes.util.Constants
 import com.example.myrecipes.util.Constants.Companion.FIREBASE_RECIPE
 import com.example.myrecipes.viewmodels.MainViewModel
 import com.google.firebase.database.DataSnapshot
@@ -21,7 +18,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_upload_recipe.*
 
 @AndroidEntryPoint
 class UploadRecipeFragment : Fragment() {

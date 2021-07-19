@@ -56,7 +56,7 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.MyViewHolder>() {
     }
 
     // set the data of recipe function, we will call this function from the recipe fragment and pass
-    // new data everytime from this function to update food automaticcly whe fetch data from API
+    // new data everytime from this function to update food automatically whe fetch data from API
     // for updating data everytime recieving a new data
     fun setData(newData: FoodRecipe) {
         val recipesDiffUtil =

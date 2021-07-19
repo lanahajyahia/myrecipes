@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.myrecipes.R
 import com.example.myrecipes.util.Constants
@@ -51,13 +50,12 @@ class UploadedDetailsActivity : AppCompatActivity() {
 
         getAndSetIntents()
 
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.details_edit_menu, menu)
         val menuItem = menu?.findItem(R.id.menu_edit)
-//        checkSavedRecipes(menuItem!!)
+        // checkSavedRecipes(menuItem!!)
         return true
     }
 

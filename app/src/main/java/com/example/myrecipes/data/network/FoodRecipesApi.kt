@@ -3,7 +3,6 @@ package com.example.myrecipes.data.network
 import com.example.myrecipes.models.FoodRecipe
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface FoodRecipesApi {
