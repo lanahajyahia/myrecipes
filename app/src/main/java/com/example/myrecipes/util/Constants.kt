@@ -11,7 +11,6 @@ class Constants {
         // for ingredients image
         const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"
         const val API_KEY = "04cfd611868a4afb9cceb974bb11ade4"
-
         const val RECIPE_RESULT_KEY = "recipeBundle"
 
         // API Query Keys
@@ -19,7 +18,6 @@ class Constants {
         const val QUERY_NUMBER = "number"
         const val QUERY_API_KEY = "apiKey"
         const val QUERY_TYPE = "type"
-        const val QUERY_DIET = "diet"
         const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"
         const val QUERY_FILL_INGREDIENTS = "fillIngredients"
 
@@ -38,15 +36,8 @@ class Constants {
         const val PREFERENCES_NAME = "myrecipes_preferences"
         const val PREFERENCES_MEAL_TYPE = "mealType"
         const val PREFERENCES_MEAL_TYPE_ID = "mealTypeId"
-        const val PREFERENCES_DIET_TYPE_ID = "dietTypeId"
-        const val PREFERENCES_BACK_ONLINE = "backOnline"
 
         const val FIREBASE_RECIPE ="recipesapp-5b4ac-default-rtdb"
-        const val ID ="id"
-        const val CATEGORY ="category"
-        const val DESCR ="description"
-//        const val FIREBASE_RECIPE =""
-//        const val FIREBASE_RECIPE =""
 
 
     }

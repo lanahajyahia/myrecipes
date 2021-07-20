@@ -23,15 +23,8 @@
     <string name="snack">Snack</string>
     <string name="drink">Drink</string>
     <string name="gluten_free">Gluten Free</string>
-    <string name="ketogenic">Ketogenic</string>
     <string name="vegetarian">Vegetarian</string>
     <string name="vegan">Vegan</string>
-    <string name="pescetarian">Pescetarian</string>
-    <string name="paleo">Paleo</string>
-    <string name="primal">Primal</string>
-    <string name="whole30">Whole30</string>
-    <string name="diet_type">Diet Type</string>
-    <string name="apply">Apply</string>
     <string name="search">Search</string>
     <string name="cheap">Cheap</string>
     <string name="healthy">Healthy</string>
@@ -41,15 +34,14 @@
     <string name="delete_favorite_menu">Delete Favorite Menu</string>
     <string name="delete_all">Delete All</string>
     <string name="default_text">default text default text default text default text default text. </string>
-    <string name="share">Share</string>
     <string name="search_category">Search Category</string>
     <string name="upload_img_recipe_fragment">Upload Image</string>
     <string-array name="category_spinner">
-        <item>main_course</item>
-        <item>side_dish</item>
-        <item>dessert</item>
-        <item>appetizer</item>
-        <item>salad</item>
+        <item>Main Course</item>
+        <item>Side Dish</item>
+        <item>Dessert</item>
+        <item>Appetizer</item>
+        <item>Salad</item>
         <item>Other</item>
     </string-array>
 </resources>

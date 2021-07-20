@@ -44,9 +44,7 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
         // when we open the bottom sheet the observer will be called
         recipesViewModel.readMealType.asLiveData().observe(viewLifecycleOwner, { value ->
             mealTypeChip = value.selectedMealType
-//            dietTypeChip = value.selectedDietType
             updateChip(value.selectedMealTypeId, mView.mealType_chipGroup)
-//            updateChip(value.selectedDietTypeId, mView.dietType_chipGroup)
         })
 
         mView.mealType_chipGroup.setOnCheckedChangeListener { group, selectedChipId ->
@@ -55,13 +53,6 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
             mealTypeChip = selectedMealType
             mealTypeChipId = selectedChipId
         }
-
-//        mView.dietType_chipGroup.setOnCheckedChangeListener { group, selectedChipId ->
-//            val chip = group.findViewById<Chip>(selectedChipId)
-//            val selectedDietType = chip.text.toString().toLowerCase(Locale.ROOT)
-//            dietTypeChip = selectedDietType
-//            dietTypeChipId = selectedChipId
-//        }
 
         mView.searchCategory_btn.setOnClickListener {
             recipesViewModel.saveMealType(

@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.datastore.DataStore
 import androidx.datastore.preferences.*
 import com.example.myrecipes.util.Constants.Companion.DEFAULT_MEAL_TYPE
-import com.example.myrecipes.util.Constants.Companion.PREFERENCES_BACK_ONLINE
 import com.example.myrecipes.util.Constants.Companion.PREFERENCES_MEAL_TYPE
 import com.example.myrecipes.util.Constants.Companion.PREFERENCES_MEAL_TYPE_ID
 import com.example.myrecipes.util.Constants.Companion.PREFERENCES_NAME
@@ -27,7 +26,6 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
         //define how to store value
         val selectedMealType = preferencesKey<String>(PREFERENCES_MEAL_TYPE)
         val selectedMealTypeId = preferencesKey<Int>(PREFERENCES_MEAL_TYPE_ID)
-//        val backOnline = preferencesKey<Boolean>(PREFERENCES_BACK_ONLINE)
     }
 
     // stores data - in a safe way
@@ -46,12 +44,6 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
             preferences[PreferenceKeys.selectedMealTypeId] = mealTypeId
         }
     }
-// return backonline
-//    suspend fun saveBackOnline(backOnline: Boolean) {
-//        dataStore.edit { preferences ->
-//            preferences[PreferenceKeys.backOnline] = backOnline
-//        }
-//    }
 
     // var for reading data that we storing
     // flow corutins - when reading values from bottom sheets we use flow to pass the selected values
@@ -73,19 +65,6 @@ class DataStoreRepository @Inject constructor(@ApplicationContext private val co
                 selectedMealTypeId
             )
         }
-// return backonline
-//    val readBackOnline: Flow<Boolean> = dataStore.data
-//        .catch { exception ->
-//            if (exception is IOException) {
-//                emit(emptyPreferences())
-//            } else {
-//                throw exception
-//            }
-//        }
-//        .map { preferences ->
-//            val backOnline = preferences[PreferenceKeys.backOnline] ?: false
-//            backOnline
-//        }
 }
 
 data class MealType(

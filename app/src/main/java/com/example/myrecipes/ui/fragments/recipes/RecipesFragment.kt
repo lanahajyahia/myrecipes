@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+
 // create two function: for showing and hiding shimmer effect in recycle view
 // and set the recycle view adapter
 // extends onQuery text change for search
@@ -61,10 +62,6 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
         setHasOptionsMenu(true)
 
         setupRecyclerView()
-// return backonline
-//        recipesViewModel.readBackOnline.observe(viewLifecycleOwner, {
-//            recipesViewModel.backOnline = it
-//        })
 
         // coroutines help to manage long-running tasks that might otherwise block
         // the main thread and cause your app to become unresponsive.
@@ -74,18 +71,14 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
                 .collect { status ->
                     Log.d("NetworkListener", status.toString())
                     recipesViewModel.networkStatus = status
-//                    recipesViewModel.showNetworkStatus() // return backonline
                     readDatabase()
                 }
         }
 
         binding.recipesFab.setOnClickListener {
             if (recipesViewModel.networkStatus) {
-                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)}
-            // return backonline
-// } else {
-////                recipesViewModel.showNetworkStatus() // return backonline
-//            }
+                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            }
         }
 
         return binding.root
@@ -111,7 +104,7 @@ class RecipesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     // whenever click enter we call the search api data
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(query != null) {
+        if (query != null) {
             searchApiData(query)
         }
         return true
